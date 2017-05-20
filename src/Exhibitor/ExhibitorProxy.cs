@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Exhibitor
+namespace ExhibitorLib
 {
     public class ExhibitorProxy<T>
     {
@@ -54,7 +54,7 @@ namespace Exhibitor
             this.InvokeMethod(methodName, null);
         }
 
-        public void InvokeMethod(string methodName, object[] parameters)
+        public void InvokeMethod(string methodName, params object[] parameters)
         {
             this.InvokeMethod<dynamic>(methodName, parameters);
         }
@@ -64,7 +64,7 @@ namespace Exhibitor
             return this.InvokeMethod<TReturn>(methodName, null);
         }
 
-        public TReturn InvokeMethod<TReturn>(string methodName, object[] parameters)
+        public TReturn InvokeMethod<TReturn>(string methodName, params object[] parameters)
         {
             parameters = parameters ?? new object[0];
 

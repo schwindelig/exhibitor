@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace Exhibitor
+namespace ExhibitorLib
 {
     public static class Exhibitor
     {
+        private const BindingFlags BINDING_FLAGS = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static;
+
+
         public static ExhibitorProxy<T> Load<T>()
         {
             return Load(default(T));
@@ -23,17 +26,17 @@ namespace Exhibitor
 
         private static IEnumerable<FieldInfo> LoadFields(TypeInfo typeInfo)
         {
-            return typeInfo.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            return typeInfo.GetFields(BINDING_FLAGS);
         }
 
         private static IEnumerable<PropertyInfo> LoadProperties(TypeInfo typeInfo)
         {
-            return typeInfo.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            return typeInfo.GetProperties(BINDING_FLAGS);
         }
 
         private static IEnumerable<MethodInfo> LoadMethods(TypeInfo typeInfo)
         {
-            return typeInfo.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            return typeInfo.GetMethods(BINDING_FLAGS);
         }
     }
 }
